@@ -6,7 +6,8 @@
 #include "common_header.h"
 
 MWC::MWC(integer k, integer m) : k(k), m(m) {
-    std::default_random_engine generator;
+    unsigned seed1 = std::chrono::system_clock::now().time_since_epoch().count();
+    std::default_random_engine generator(seed1);
     std::uniform_int_distribution<integer> distribution(1);
     auto random_int = std::bind(distribution, generator);
 

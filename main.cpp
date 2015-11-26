@@ -64,6 +64,6 @@ int main(int argc, char *argv[])
     }
     for (; i < b; ++i)
     {
-        std::cout << mixed.get_next() << std::endl;
+        std::cout << mixed.get_next() << "\n";
     }
 }
