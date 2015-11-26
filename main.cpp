@@ -1,6 +1,7 @@
 #include "MWC.h"
 #include "FibonacciGenerator.h"
 #include "MixedGenerator.h"
+#include "common_header.h"
 
 
 MWC mwc_from_stdin()
@@ -27,9 +28,8 @@ MWC mwc_from_stdin()
     return MWC(k, m, coefficients, mwcCache);
 }
 
-int main()
+int main(int argc, char *argv[])
 {
-//    auto mwc = mwc_from_stdin();
     integer best_m = (integer) (std::pow(2, 32) - 1);
     auto mwc = MWC(2, best_m, integer_vector(1, 2), integer_vector(3, 4));
 
@@ -38,21 +38,32 @@ int main()
     auto and_operator = [](integer a, integer b) -> integer { return a & b; };
     auto mixed = MixedGenerator(mwc, fib, and_operator);
 
-//    integer a, b;
-//    scanf("%lld-%lld", &a, &b);
+    integer a = 1;
+    integer b = 10;
 
-    integer a = 25000000;
-    integer b = 25000010;
+
+    if (argc >= 2)
+    {
+        std::regex pattern("(\\d+)-(\\d+)");
+        std::smatch base_match;
+        if (std::regex_match(std::string(argv[1]), base_match, pattern))
+        {
+
+            if (base_match.size() == 3)
+            {
+                a = (integer) atoll(base_match[1].str().c_str());
+                b = (integer) atoll(base_match[2].str().c_str());
+            }
+        }
+    }
 
     integer i = 0;
-    while (i++ < a)
+    for (; i < a; ++i)
     {
         mixed.get_next();
-//        fib.get_next();
     }
     for (; i < b; ++i)
     {
-//        std::cout << fib.get_next() << std::endl;
         std::cout << mixed.get_next() << std::endl;
     }
 }

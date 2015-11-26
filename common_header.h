@@ -10,6 +10,7 @@
 #include <cmath>
 #include <cstdint>
 #include <cstdio>
+#include <regex>
 
 using integer = uint64_t;
 using integer_vector_cref = const std::vector<integer> &;
