@@ -31,7 +31,7 @@ MWC mwc_from_stdin()
 int main(int argc, char *argv[])
 {
     integer best_m = (integer) (std::pow(2, 32) - 1);
-    auto mwc = MWC(2, best_m, integer_vector(1, 2), integer_vector(3, 4));
+    auto mwc = MWC(4096, best_m);
 
     auto fib = FibonacciGenerator();
 

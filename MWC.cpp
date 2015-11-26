@@ -5,6 +5,22 @@
 #include "MWC.h"
 #include "common_header.h"
 
+MWC::MWC(integer k, integer m) : k(k), m(m) {
+    std::default_random_engine generator;
+    std::uniform_int_distribution<integer> distribution(1);
+    auto random_int = std::bind(distribution, generator);
+
+    for (integer i = 0; i < this->k; ++i)
+    {
+        this->mwcCache.push_back(random_int());
+    }
+
+    for (integer i = 0; i < this->k; ++i)
+    {
+        this->coefficients.push_back(random_int());
+    }
+}
+
 MWC::MWC(integer k, integer m, const std::vector<integer> &coefficients, const std::vector<integer> &mwc) : mwcCache(mwc), coefficients(coefficients), k(k), m(m)
 {
 }

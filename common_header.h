@@ -11,6 +11,7 @@
 #include <cstdint>
 #include <cstdio>
 #include <regex>
+#include <random>
 
 using integer = uint64_t;
 using integer_vector_cref = const std::vector<integer> &;

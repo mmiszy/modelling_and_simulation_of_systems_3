@@ -28,6 +28,8 @@ private:
     integer state = 0;
 
 public:
+    MWC(integer k, integer m);
+
     MWC(integer k, integer m, integer_vector_cref coefficients, integer_vector_cref mwc);
 
     integer get_next();
