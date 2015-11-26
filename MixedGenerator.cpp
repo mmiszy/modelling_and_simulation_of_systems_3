@@ -9,5 +9,8 @@ MixedGenerator::MixedGenerator(AbstractRandomGenerator &gen1, AbstractRandomGene
 
 integer MixedGenerator::get_next()
 {
-    return this->operation(this->gen1.get_next(), this->gen2.get_next());
+    integer i = this->gen1.get_next();
+    integer next = this->gen2.get_next();
+//    std::cout << i << " & " << next << " ";
+    return this->operation(i, next);
 }

@@ -17,7 +17,7 @@ private:
     integer j;
     integer k;
 
-    integer state = 0;
+    integer state;
 
     integer calculate(integer i);
 

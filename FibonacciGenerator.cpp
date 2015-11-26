@@ -4,7 +4,8 @@
 
 #include "FibonacciGenerator.h"
 
-FibonacciGenerator::FibonacciGenerator(integer j, integer k) : j(j), k(k) {
+FibonacciGenerator::FibonacciGenerator(integer j, integer k) : j(j), k(k), state(k + 1)
+{
     std::default_random_engine generator;
     std::uniform_int_distribution<integer> distribution(1);
     auto random_int = std::bind(distribution, generator);
@@ -15,9 +16,13 @@ FibonacciGenerator::FibonacciGenerator(integer j, integer k) : j(j), k(k) {
     }
 };
 
-integer FibonacciGenerator::calculate(integer i) {
-    static const integer m = std::numeric_limits<integer>::max();
+integer FibonacciGenerator::calculate(integer i)
+{
+//    static const integer m = std::numeric_limits<integer>::max();
+    static const integer m = (1ull << 32) - 1;
+
     integer item = (result[i - this->k] | result[i - this->j]) % m;
+//    std::cout << "m: " << m << " rk" << result[i - this->k] << " rj" << result[i - this->j] << " rk|rj" << (result[i - this->k] | result[i - this->j]) << " item" << item << std::endl;
     result.push_back(item);
     return item;
 }

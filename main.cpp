@@ -35,23 +35,24 @@ int main()
 
     auto fib = FibonacciGenerator();
 
-    auto or_operator = [](integer a, integer b) -> integer { return a | b; };
-    auto mixed = MixedGenerator(mwc, fib, or_operator);
+    auto and_operator = [](integer a, integer b) -> integer { return a & b; };
+    auto mixed = MixedGenerator(mwc, fib, and_operator);
 
 //    integer a, b;
 //    scanf("%lld-%lld", &a, &b);
 
-    integer a = 1;
-    integer b = 100;
+    integer a = 25000000;
+    integer b = 25000010;
 
     integer i = 0;
     while (i++ < a)
     {
-        fib.get_next();
-        mwc.get_next();
+        mixed.get_next();
+//        fib.get_next();
     }
     for (; i < b; ++i)
     {
-        std::cout << fib.get_next() << " | " << mwc.get_next() << " = " << mixed.get_next() << std::endl;
+//        std::cout << fib.get_next() << std::endl;
+        std::cout << mixed.get_next() << std::endl;
     }
 }
